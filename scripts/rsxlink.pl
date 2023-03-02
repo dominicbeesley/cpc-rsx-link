@@ -183,17 +183,20 @@ print Dumper(@basrelocs) . "\n";
 # Construct basic loader
 
 print $fh_asc_out "10REM > rsx loader\r\n";
+print $fh_asc_out "15DEFINT A-Z\r\n";
 printf $fh_asc_out "20H=1+HIMEM-&%04X:MEMORY H-1\r\n", $total_size;
+printf $fh_asc_out "25PRINT H\r\n";
 printf $fh_asc_out "30LOAD\"rsx.bin\",H\r\n";
 printf $fh_asc_out "40WHILE 1:READ A\r\n";
-printf $fh_asc_out "50IF A=-1 THEN CALL H:END\r\n";
-printf $fh_asc_out "60IF A=>&8000 THEN GOSUB 100 ELSE GOSUB 200\r\n";
+#printf $fh_asc_out "50IF A=-1 THEN CALL H:END\r\n";
+printf $fh_asc_out "50IF A=&FFFF THEN SAVE\"X.bin\",B,H,$total_size:END\r\n";
+printf $fh_asc_out "60IF A AND &8000 THEN GOSUB 100 ELSE GOSUB 200\r\n";
 printf $fh_asc_out "70WEND\r\n";
 printf $fh_asc_out "80:\r\n";
-printf $fh_asc_out "100A=A-&8000:READ B:IF B>=256THEN POKE H+A,H+PEEK(H+A) ELSE POKE H+A,((H+B)/256)+PEEK(H+A)\r\n";
+printf $fh_asc_out "100A=A AND &7FFF:READ B:IF B>=256 THEN POKE H+A,(H+PEEK(H+A)) AND 255 ELSE POKE H+A,(((H+B)/256)+PEEK(H+A)) AND 255\r\n";
 printf $fh_asc_out "110RETURN\r\n";
 printf $fh_asc_out "120:\r\n";
-printf $fh_asc_out "200B=H+PEEK(H+A)+256*PEEK(H+A+1):POKE H+A,B:POKE H+A+1,B/256\r\n";
+printf $fh_asc_out "200B=H+PEEK(H+A)+256*PEEK(H+A+1):POKE H+A,B AND 255:POKE H+A+1,B/256\r\n";
 printf $fh_asc_out "210RETURN\r\n";
 printf $fh_asc_out "220:\r\n";
 

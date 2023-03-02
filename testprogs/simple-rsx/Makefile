@@ -1,7 +1,7 @@
 AS=asz80
 ASFLAGS=-olsvb
 BUILD=./build/
-TARGETS=RSX.BIN RSX-CMP.bin
+TARGETS=RSX.bin RSX-CMP.bin
 OBJS=rsx.rel rsx2.rel
 OBJS2=$(addprefix $(BUILD),$(OBJS))
 SCRIPTS=../../scripts
@@ -13,7 +13,7 @@ DEPS=
 
 X:=$(shell mkdir -p $(BUILD))
 
-#asz80 is an ashat and creates a file when there's an error and pisses around
+#asz80 is an asshat and creates a file when there's an error and pisses around
 #with the filename so you can't bloody rename it easily
 .DELETE_ON_ERROR:
 .PRECIOUS: $(BUILD)%.rel
@@ -40,18 +40,7 @@ simple.dsk: $(DSKFILES)
 	iDSK $@ -i $(BUILD)RSX.bin -e 0xC000 -c 0xC000 -t 1
 
 clean:
-	-rm $(BUILD)*.s19
-	-rm $(BUILD)*.ihx
-	-rm $(BUILD)*.lst
-	-rm $(BUILD)*.rel
-	-rm $(BUILD)*.sym
-	-rm $(BUILD)*.noi
-	-rm $(BUILD)*.bin
-	-rm $(BUILD)*.map
-	-rm $(BUILD)*.hlr
-	-rm $(BUILD)*.inf
-	-rm $(BUILD)*.rst
-	-rm $(BUILD)*.rsx
+	-rm $(BUILD)*
 
 .PHONY: all clean
 	
