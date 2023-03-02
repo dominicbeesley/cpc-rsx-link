@@ -1,0 +1,29 @@
+ASxxxx Assembler V05.40  (Zilog Z80 / Hitachi HD64180)                  Page 1
+Hexadecimal [16-Bits]                                 Wed Mar  1 19:19:35 2023
+
+
+
+                              1 
+                              2 	
+                              3 
+                              4 	.area CODE(CON,REL)
+                              5 
+                              6 
+                     0017     7 REDEFME == 23
+                     0001     8 REDEFME2 == 01
+                              9 
+                             10 	.globl SOMMAT
+   0000                      11 START::
+   0000 21 00 00      [10]   12 	ld	HL,SOMETHING
+   0003 21 0A 00      [10]   13 	ld	HL,SOMETHINGELESE
+                             14 	
+   0006 21 00 00      [10]   15 	ld	HL,SOMMAT
+                             16 
+   0009 7E            [ 7]   17 	ld	A,(HL)
+   000A C3 00 00      [10]   18 HERE::	jp	START
+                             19 
+                             20 	.area DATA(CON,REL)
+   0000                      21 SOMETHING::
+   0000 73 6F 6D 65 74 68    22 	.asciz	"something"
+        69 6E 67 00
+   000A                      23 SOMETHINGELESE::

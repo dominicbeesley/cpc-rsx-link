@@ -1,0 +1,24 @@
+ASxxxx Assembler V05.40  (Zilog Z80 / Hitachi HD64180)                  Page 1
+Hexadecimal [16-Bits]                                 Wed Mar  1 19:19:35 2023
+
+Symbol Table
+
+    .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
+    .__.CPU.       =   0000 L   |     .__.H$L.       =   0000 L
+  2 HERE               000A GR  |     REDEFME        =   0017 G
+    REDEFME2       =   0001 G   |   3 SOMETHING          0000 GR
+  3 SOMETHINGELESE     000A GR  |     SOMMAT             **** GX
+  2 START              0000 GR
+
+ASxxxx Assembler V05.40  (Zilog Z80 / Hitachi HD64180)                  Page 2
+Hexadecimal [16-Bits]                                 Wed Mar  1 19:19:35 2023
+
+Area Table
+
+[_CSEG]
+   0 _CODE            size    0   flags C080
+   2 CODE             size    D   flags  D00
+   3 DATA             size    A   flags  D00
+[_DSEG]
+   1 _DATA            size    0   flags C0C0
+
